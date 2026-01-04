@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Stats Visualizer | Kova Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">◈</span>
+            <span class="logo-text">GitHub Stats</span>
+        </div>
+        <p class="tagline">Visualize any developer's GitHub journey</p>
+    </header>
+
+    <main class="container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="username-input" 
+                    placeholder="Enter GitHub username" 
+                    value="kovadj-dev"
+                    autocomplete="off"
+                >
+                <button id="fetch-btn" class="fetch-button">
+                    <span class="btn-text">Fetch Stats</span>
+                    <span class="btn-loader hidden">
+                        <span class="spinner"></span>
+                    </span>
+                </button>
+            </div>
+            <div id="error-message" class="error-message hidden"></div>
+        </section>
+
+        <!-- Stats Dashboard (hidden until data loads) -->
+        <div id="dashboard" class="dashboard hidden">
+            
+            <!-- User Profile Card -->
+            <section class="card profile-card">
+                <div class="card-header">
+                    <h2>Profile</h2>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-avatar-wrapper">
+                        <img id="user-avatar" class="profile-avatar" src="" alt="User avatar">
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="user-name" class="profile-name"></h3>
+                        <a id="user-login" class="profile-login" href="" target="_blank"></a>
+                        <p id="user-bio" class="profile-bio"></p>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="stat-repos">0</span>
+                            <span class="stat-label">Repos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="stat-stars">0</span>
+                            <span class="stat-label">Stars</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="stat-followers">0</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="stat-following">0</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Repositories -->
+            <section class="card repos-card">
+                <div class="card-header">
+                    <h2>Top Repositories</h2>
+                    <span class="card-subtitle">by stars</span>
+                </div>
+                <div id="repos-list" class="repos-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Language Distribution -->
+            <section class="card languages-card">
+                <div class="card-header">
+                    <h2>Languages</h2>
+                    <span class="card-subtitle">across all repos</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="languages-chart"></canvas>
+                </div>
+                <div id="languages-legend" class="chart-legend"></div>
+            </section>
+
+            <!-- Commit Activity by Hour -->
+            <section class="card commits-card">
+                <div class="card-header">
+                    <h2>Commit Hours</h2>
+                    <span class="card-subtitle">when do they code?</span>
+                </div>
+                <div class="chart-container chart-container-bar">
+                    <canvas id="commits-chart"></canvas>
+                </div>
+                <p class="chart-note">Based on recent commits from top repositories</p>
+            </section>
+
+            <!-- Contribution Graph -->
+            <section class="card contributions-card">
+                <div class="card-header">
+                    <h2>Contribution Graph</h2>
+                    <span class="card-subtitle">yearly activity</span>
+                </div>
+                <div class="contributions-wrapper">
+                    <img id="contributions-graph" class="contributions-graph" src="" alt="Contribution graph">
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Loading Skeleton -->
+        <div id="loading-skeleton" class="dashboard hidden">
+            <section class="card skeleton-card">
+                <div class="skeleton skeleton-circle"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line short"></div>
+            </section>
+            <section class="card skeleton-card">
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line"></div>
+                <div class="skeleton skeleton-line"></div>
+            </section>
+            <section class="card skeleton-card">
+                <div class="skeleton skeleton-rect"></div>
+            </section>
+            <section class="card skeleton-card">
+                <div class="skeleton skeleton-rect"></div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>Built with <span class="heart">♥</span> by <a href="https://github.com/kovadj-dev" target="_blank">Kova</a></p>
+        <p class="footer-note">Using GitHub's public API • No authentication required</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
