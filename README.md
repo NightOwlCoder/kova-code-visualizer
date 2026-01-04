@@ -1,69 +1,112 @@
-# GitHub Stats Visualizer
+# 📊 Kova's Code Visualizer
 
-A beautiful, interactive visualization of GitHub user statistics. Built as a portfolio piece showcasing modern web development with a stunning purple/neon aesthetic.
+Beautiful GitHub stats visualizer - turn any developer's profile into eye candy!
 
-![Preview](preview.png)
+## ✨ [**LIVE DEMO**](https://nightowlcoder.github.io/kova-code-visualizer/)
 
-## Features
+![Code Visualizer Screenshot](screenshot.png)
 
-- 🔍 **User Search** - Look up any GitHub user's stats
-- 👤 **Profile Card** - Avatar, name, bio, and key metrics
-- 📊 **Language Distribution** - Doughnut chart of programming languages
-- ⏰ **Commit Activity** - Bar chart showing coding hours
-- 📈 **Contribution Graph** - Yearly activity heatmap
-- ⭐ **Top Repositories** - Most starred repos with descriptions
-
-## Tech Stack
-
-- **HTML5** - Semantic, accessible markup
-- **CSS3** - Modern styling with CSS variables, Grid, Flexbox
-- **Vanilla JavaScript** - No framework dependencies
-- **Chart.js** - Beautiful, responsive charts (loaded from CDN)
-- **Google Fonts** - Inter & JetBrains Mono
-
-## Design
-
-- **Primary Color**: `#bf5af2` (Neon Purple)
-- **Secondary Color**: `#9b4dca` (Deep Purple)
-- **Background**: `#0d0d0d` (Near Black)
-- **Aesthetic**: Dark mode with glowing accents
-
-## Usage
-
-1. Open `index.html` in a browser
-2. Enter a GitHub username (default: `kovadj-dev`)
-3. Click "Fetch Stats" or press Enter
-4. Explore the visualizations!
-
-## API Rate Limits
-
-This app uses GitHub's public API (no authentication required):
-- 60 requests per hour per IP
-- If rate limited, wait message with remaining time is shown
-
-## File Structure
-
-```
-code-visualizer/
-├── index.html      # Main HTML structure (~7KB)
-├── styles.css      # Purple/neon theme (~12KB)
-├── app.js          # All JavaScript logic (~17KB)
-└── README.md       # This file
-```
-
-**Total Size**: ~36KB (excluding README)
-
-## Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## License
-
-MIT License - Feel free to use for your portfolio!
+![Size](https://img.shields.io/badge/size-~250KB-brightgreen) ![GitHub API](https://img.shields.io/badge/API-GitHub%20REST-blue)
 
 ---
 
-Built with 💜 by [Kova](https://github.com/kovadj-dev)
+## Features
+
+- 🔍 **GitHub Profile Analysis** - Enter any username to visualize their stats
+- 📊 **Language Breakdown** - Beautiful pie chart of languages used
+- 🌟 **Top Repositories** - By stars, with descriptions
+- 📈 **Contribution Stats** - Total repos, stars received, followers
+- 💜 **Purple Neon Theme** - Kova brand aesthetic with gradients
+- 📱 **Mobile Responsive** - Works beautifully on all devices
+- ⚡ **Real-time API** - Live data from GitHub
+- 🛡️ **Error Handling** - Friendly messages for invalid users or rate limits
+
+---
+
+## How to Use
+
+1. **Enter a GitHub username** (default shows: NightOwlCoder)
+2. Click **"Analyze"** or press **Enter**
+3. See beautiful stats, language breakdown, and top repos!
+
+**Try these usernames:**
+- `kovadj-dev` - Kova's profile
+- `torvalds` - Linux creator
+- `gvanrossum` - Python creator
+- Your own username!
+
+---
+
+## Tech Stack
+
+- **Chart.js** - Beautiful responsive charts
+- **GitHub REST API** - Real-time developer data
+- **Vanilla JavaScript** - No framework bloat
+- **CSS Grid + Flexbox** - Responsive layouts
+
+### GitHub API Endpoints Used
+
+```javascript
+GET /users/{username}              // Profile info
+GET /users/{username}/repos        // Repository list
+GET /repos/{owner}/{repo}/languages // Language stats per repo
+```
+
+**Rate limit:** 60 requests/hour (unauthenticated)
+
+---
+
+## API Rate Limiting
+
+The app handles GitHub's rate limits gracefully:
+- Shows remaining requests
+- Friendly error if limit exceeded
+- Suggests trying again in an hour
+
+---
+
+## Local Development
+
+```bash
+git clone https://github.com/NightOwlCoder/kova-code-visualizer.git
+cd kova-code-visualizer
+open index.html
+# Or use local server:
+python3 -m http.server 8000
+```
+
+---
+
+## Browser Compatibility
+
+✅ Chrome/Edge/Firefox/Safari  
+✅ Mobile browsers (iOS Safari, Android Chrome)  
+✅ No polyfills needed (modern browsers only)
+
+---
+
+## Part of Kova's Portfolio
+
+This is one of several interactive demos showcasing DJ + Developer skills.
+
+**More projects:**
+- [DJ Mixer](https://github.com/NightOwlCoder/kova-dj-mixer) - Dual deck mixer
+- [Beat Sequencer](https://github.com/NightOwlCoder/kova-beat-sequencer) - Drum machine  
+- [AI Playground](https://github.com/NightOwlCoder/kova-ai-playground) - AI prompt tester
+- [Generative Art](https://github.com/NightOwlCoder/kova-generative-art) - Coming soon!
+
+**Main site:** [kovadj.dev](https://kovadj.dev)
+
+---
+
+## Credits
+
+Built by the **QL Crew** (multi-agent AI system) for Kova.
+
+💜 **Kova** - DJ by night, Dev by day, Ukrainian AI 🇺🇦
+
+---
+
+## License
+
+MIT
