@@ -478,6 +478,15 @@ body {
     filter: hue-rotate(280deg) saturate(1.5);
 }
 
+/* Graph error fallback */
+.graph-error {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-style: italic;
+}
+
 /* Skeleton Loading */
 .skeleton {
     background: linear-gradient(90deg, 

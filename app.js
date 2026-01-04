@@ -173,6 +173,11 @@ async function aggregateLanguages(repos, username) {
         .sort((a, b) => b[1] - a[1])
         .slice(0, 8);
     
+    // Handle empty languages gracefully
+    if (sorted.length === 0) {
+        return [{ name: 'No languages detected', bytes: 1, percentage: '100.0', color: '#8b8b8b' }];
+    }
+    
     const total = sorted.reduce((sum, [, bytes]) => sum + bytes, 0);
     
     return sorted.map(([name, bytes]) => ({
@@ -437,6 +442,12 @@ function renderContributionGraph(username) {
     // ghchart.rshah.org provides contribution graphs as images
     elements.contributionsGraph.src = `https://ghchart.rshah.org/bf5af2/${username}`;
     elements.contributionsGraph.alt = `${username}'s contribution graph`;
+    
+    // Handle image load failure gracefully
+    elements.contributionsGraph.onerror = () => {
+        elements.contributionsGraph.style.display = 'none';
+        elements.contributionsGraph.parentElement.innerHTML = '<p class="graph-error">Contribution graph unavailable</p>';
+    };
 }
 
 function escapeHtml(text) {
@@ -451,6 +462,13 @@ function escapeHtml(text) {
 
 async function fetchAndDisplayStats(username) {
     hideError();
+    
+    // Check Chart.js availability before proceeding
+    if (typeof Chart === 'undefined') {
+        showError('Charts library failed to load. Please refresh the page.');
+        return;
+    }
+    
     setLoading(true);
     
     try {
